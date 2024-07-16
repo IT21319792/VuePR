@@ -11,10 +11,18 @@
                     class="form-control"
                     id="question"
                     placeholder="Enter your question"
+                    v-model="question"
                 />
+         
 
            </div>
-            <button @click="nextScreen" class="btn">Next</button>
+            <button
+             @click="nextScreen" 
+             class="btn"
+             v-if = "question"
+           
+             
+             >Next</button>
         </div>
         </div>
     </div>
@@ -23,6 +31,20 @@
 </template>
 
 <script>
+export default {
+    data(){
+        return{
+            question:''
+        }
+    },
+    methods:{
+        nextScreen(e){
+            this.$emit('nextScreen',this.question);
+            e.preventDefault();
+            console.log('button triggered');
+        }
+    }
+}
 
 </script>
 
