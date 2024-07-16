@@ -13,16 +13,22 @@
                     placeholder="Enter your question"
                     v-model="question"
                 />
-         
 
-           </div>
-            <button
+                <button
              @click="nextScreen" 
              class="btn"
              v-if = "question"
            
              
              >Next</button>
+
+             <div v-if="error">
+                     Please enter a valid question
+             </div>
+         
+
+           </div>
+            
         </div>
         </div>
     </div>
@@ -34,7 +40,8 @@
 export default {
     data(){
         return{
-            question:''
+            question:'',
+            error:false
         }
     },
     methods:{
@@ -42,6 +49,18 @@ export default {
             this.$emit('nextScreen',this.question);
             e.preventDefault();
             console.log('button triggered');
+            if(this.question.length<=5){
+                console.log('error');
+                this.error = true;
+            
+               
+                
+            } else{
+                    console.log('ok');
+                    this.error = false; 
+                    this.$emit('goto',1);
+                    this.$emit('question',this.question);
+                }
         }
     }
 }
