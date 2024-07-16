@@ -1,13 +1,16 @@
 <template>
-main app
+
 <div class="container">
 
 </div>
 
 <component
   :is="screens[position]"
+  :question="question"
   @goto="handleGoTo"
   @question="handleQuestion"
+  @goNext="handleGoNext"
+  @goBack="handleGoBack"
 
 />
 
@@ -44,6 +47,12 @@ export default{
     },
     handleQuestion(question){
       this.question = question;
+    },
+    handleGoNext(position){
+      this.position = position;
+    },
+    handleGoBack(position){
+      this.position = position;
     }
   }
 
