@@ -1,63 +1,42 @@
 <template>
-
-<div class="container">
-
-</div>
-
-<component
-  :is="screens[position]"
-  :question="question"
-  @goto="handleGoTo"
-  @question="handleQuestion"
-  @goNext="handleGoNext"
-  @goBack="handleGoBack"
-
-/>
-
- 
+  <div class="container">
+    <component
+      :is="screens[position]"
+      :expenses="expenses"
+      @goto="handleGoTo"
+      @addExpense="handleAddExpense"
+    />
+  </div>
 </template>
 
 <script>
+import AddExpense from './components/AddExpense.vue';
+import ViewExpenses from './components/ViewExpenses.vue';
+import Summary from './components/SummaryRep.vue';
 
-import appInitial from './components/initialDiolog.vue';
-import appConfirm from './components/confirmDiolog.vue';
-import appResults from './components/resultsDiolog.vue';
-
-export default{
-  components:{
-
-    appConfirm,
-    appInitial,
-    appResults
-
-
-
+export default {
+  components: {
+    AddExpense,
+    ViewExpenses,
+    Summary
   },
-  data(){
-    return{
-      screens:['appInitial','appConfirm','appResults'],
-      position:0,
-      question:''
-    }
-
+  data() {
+    return {
+      screens: ['AddExpense', 'ViewExpenses', 'Summary'],
+      position: 0,
+      expenses: []
+    };
   },
-  methods:{
-    handleGoTo(position){
+  methods: {
+    handleGoTo(position) {
       this.position = position;
     },
-    handleQuestion(question){
-      this.question = question;
-    },
-    handleGoNext(position){
-      this.position = position;
-    },
-    handleGoBack(position){
-      this.position = position;
+    handleAddExpense(expense) {
+      this.expenses.push(expense);
+      this.position = 1; // Go to ViewExpenses after adding an expense
     }
   }
-
-}
-
+};
 </script>
 
 <style>
