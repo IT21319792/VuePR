@@ -25,9 +25,9 @@
 
               </tr>
               <tr>
-                <div class="mb-3">
-                  <h6>Total Expenses: LKR {{ totalExpenses.toFixed(2) }}</h6>
-                </div>
+               
+                 Total Expenses: LKR {{ totalExpenses.toFixed(2) }}
+             
               </tr>
             </tbody>
           </table>
